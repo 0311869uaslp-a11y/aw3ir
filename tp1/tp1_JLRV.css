@@ -36,10 +36,6 @@ a:hover{
     color: orange;
 }
 
-th:hover{
-    background-color: yellow;
-}
-
 img:hover{
     transform : scale(2);
 }
