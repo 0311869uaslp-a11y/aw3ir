@@ -26,11 +26,13 @@ h2{
 }
 
 body{
+    
 
     background-color: rgb(219, 217, 217);
 }
 
 a:hover{
+    text-decoration: none;
     color: orange;
 }
 
@@ -54,6 +56,13 @@ tr:nth-child(odd) {
 }
 
 tr:hover {
+    text-decoration: none;
     color:black;
   background-color: #ffff99;
 }
+
+a {
+    text-decoration: none;
+    color: black; /* opcional, para mantener el texto negro */
+}
+
