@@ -20,9 +20,14 @@ td,th{
     font-weight: bold;
 }
 
+h2{
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
 body{
 
-    background-color: gray;
+    background-color: rgb(219, 217, 217);
 }
 
 a:hover{
@@ -41,4 +46,14 @@ img:hover{
     body {
         background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
     }
+}
+
+tr:nth-child(odd) {
+  background-color: #656966;
+  color:white;
+}
+
+tr:hover {
+    color:black;
+  background-color: #ffff99;
 }
