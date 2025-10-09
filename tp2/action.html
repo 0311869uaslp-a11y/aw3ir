@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos Enviados</title>
+</head>
+<body>
+    <h1>Datos Enviados</h1>
+    <div id="results"></div>
+
+    <script>
+        // Obtener datos de la URL
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name');
+        const firstname = params.get('firstname');
+        const birthdate = params.get('birthdate');
+        const email = params.get('email');
+        const address = params.get('address');
+
+        const resultsDiv = document.getElementById('results');
+
+        resultsDiv.innerHTML = `
+            <p><strong>Nombre:</strong> ${name}</p>
+            <p><strong>Apellido:</strong> ${firstname}</p>
+            <p><strong>Fecha de nacimiento:</strong> ${birthdate}</p>
+            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+            <p><strong>Dirección:</strong> <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}" target="_blank">${address}</a></p>
+        `;
+    </script>
+</body>
+</html>
