@@ -21,10 +21,16 @@ label {
 }
 
 input {
+    width: 250px;
+  padding: 6px 12px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  font-size: 1rem;
+  box-sizing: border-box; /* pour s'assurer que les margin/padding n'impacte pas la largeur width */
+
     font-size: 1em;          /* taille de caractère de 1em */
     border-radius: 5px;      /* bordure arrondi */
-    padding: 6px 12px;       /* padding vertical 6px, horizontal 12px */
-    border: 2px solid #ccc;  /* borde gris por defecto */
+    
     transition: border-color 0.3s;
 }
 
