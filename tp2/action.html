@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datos Enviados</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TP #2 - Résultat du formulaire</title>
+  <!-- Faire référence à la feuille CSS utilisée précédemment -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Datos Enviados</h1>
-    <div id="results"></div>
+  <!-- Lien retour vers le formulaire -->
+  <a href="index.html" class="btn-primary">⬅️ Retour au formulaire</a>
 
-    <script>
-        // Obtener datos de la URL
-        const params = new URLSearchParams(window.location.search);
-        const name = params.get('name');
-        const firstname = params.get('firstname');
-        const birthdate = params.get('birthdate');
-        const email = params.get('email');
-        const address = params.get('address');
+  <h1>TP #2 - résultat du formulaire</h1>
 
-        const resultsDiv = document.getElementById('results');
+  <div>
+    <p>Bonjour <span id="name"></span> <span id="firstname"></span>,</p>
+    <p>
+      Vous êtes né le <span id="birthday"></span>
+      et habité(e)
+      <a href="" id="address" target="_blank"></a>.
+    </p>
+    <p>
+      Mail :
+      <a href="" id="email"></a>
+    </p>
+  </div>
 
-        resultsDiv.innerHTML = `
-            <p><strong>Nombre:</strong> ${name}</p>
-            <p><strong>Apellido:</strong> ${firstname}</p>
-            <p><strong>Fecha de nacimiento:</strong> ${birthdate}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            <p><strong>Dirección:</strong> <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}" target="_blank">${address}</a></p>
-        `;
-    </script>
+  <!-- Script JS externe -->
+  <script src="action.js"></script>
 </body>
 </html>

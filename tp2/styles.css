@@ -1,33 +1,62 @@
 body {
+    background-color: rgb(203, 198, 198);
     font-family: Arial, sans-serif;
     margin: 40px;
 }
 
 form {
+    border-radius: 16px;
+    padding: 16px;
+    background-color: white;
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    max-width: 600px;
+    box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
 }
 
 label {
+    width: 150px;
+  display: inline-block;
     margin-top: 10px;
 }
 
 input {
-    padding: 5px;
-    margin-top: 5px;
-    border: 2px solid #ccc;
-    border-radius: 4px;
+    font-size: 1em;          /* taille de caractère de 1em */
+    border-radius: 5px;      /* bordure arrondi */
+    padding: 6px 12px;       /* padding vertical 6px, horizontal 12px */
+    border: 2px solid #ccc;  /* borde gris por defecto */
     transition: border-color 0.3s;
 }
 
-input.valid {
+/* Campo válido */
+input:valid {
     border-color: green;
 }
 
-input.invalid {
+/* Campo no válido */
+input:invalid {
     border-color: red;
 }
+
+.btn-primary {
+  border-radius: 5px;        /* bordes redondeados */
+  padding: 6px 12px;         /* padding vertical y horizontal */
+  background-color: #0d6efd; /* color de fondo azul */
+  border: 2px solid #0d6efd; /* borde azul */
+  color: #fff;               /* texto blanco */
+  cursor: pointer;           /* cursor tipo puntero */
+  text-decoration: none;     /* sin subrayado */
+  font-size: 1em;            /* tamaño de letra coherente */
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Efecto hover */
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0b5ed7;
+}
+
+
 
 button {
     margin-top: 20px;
@@ -42,4 +71,15 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+input:invalid + .icon-ok {
+  display: none;
+}
+input:valid + .icon-ok {
+  display: inline-block;
+}
+
+form:invalid input[type="submit"] {
+  background-color: gray;
 }
