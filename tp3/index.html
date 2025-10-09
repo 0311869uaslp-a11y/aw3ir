@@ -1,39 +1,117 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TP3 - Formulaire Bootstrap</title>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>TP3</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.css" />
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
+    <!-- JS Bootstrap -->
+    <script src="js/bootstrap.bundle.js"></script>
 
-    <style>
-        body {
-            background-color: #e9ebee;
-            font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
-            font-size: 16px;
-            margin: 0 auto;
-            max-width: 800px;
-        }
-    </style>
+    <!-- JS Validation -->
+    <script src="js/form-validation.js" defer></script>
 
-    <!-- Code à dé-commenter si besoin de fichier CSS ou JS -->
-    <!--<link rel="stylesheet" href="style.css">-->
-    <!--<script src="main.js"></script>-->
-</head>
+    <!-- Librería Leaflet (mapas libres e interactivos) -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<body>
-    <nav>
-        <a href="..">🏠 Index</a> / TP3
-    </nav>
-    <h1>tp3</h1>
-    <!-- Add your site or application content here -->
-    <p>Hello world! This is HTML5 Boilerplate.</p>
-    <img src="../galilee.png" alt="Logo Galilee" />
-</body>
+  </head>
 
+  <body class="bg-light">
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">Formulaire d'inscription</h2>
+
+      <form id="userForm" class="row g-3 needs-validation" novalidate>
+        <div class="col-md-6">
+          <label for="lastname" class="form-label">Nom</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastname"
+            placeholder="Dupont"
+            required
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="firstname" class="form-label">Prénom</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstname"
+            placeholder="Jean"
+            required
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="birthday" class="form-label">Date de naissance</label>
+          <input type="date" class="form-control" id="birthday" required />
+        </div>
+
+        <div class="col-md-6">
+          <label for="address" class="form-label">Adresse postale</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            placeholder="10 rue de Paris"
+            required
+          />
+        </div>
+
+        <div class="col-md-12">
+          <label for="email" class="form-label">Adresse mail</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="exemple@mail.com"
+            required
+          />
+        </div>
+
+        <div class="col-12 text-center mt-4">
+          <button type="submit" id="submit" class="btn btn-primary px-4">
+            Envoyer
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- MODAL -->
+    <div
+      class="modal fade"
+      id="myModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Résultat</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center">...</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
