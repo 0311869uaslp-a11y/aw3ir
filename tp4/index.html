@@ -1,39 +1,108 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TP4 - Formulaire avec géolocalisation et JSON</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>TP4</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Librería Leaflet (mapas libres e interactivos) -->
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
+
 
     <style>
-        body {
-            background-color: #e9ebee;
-            font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
-            font-size: 16px;
-            margin: 0 auto;
-            max-width: 800px;
-        }
+      body {
+        margin: 20px;
+      }
+      span {
+        font-size: 0.9em;
+        color: #555;
+        margin-left: 10px;
+      }
+      #map img {
+        border-radius: 10px;
+        margin-top: 10px;
+      }
     </style>
+  </head>
 
-    <!-- Code à dé-commenter si besoin de fichier CSS ou JS -->
-    <!--<link rel="stylesheet" href="style.css">-->
-    <!--<script src="main.js"></script>-->
-</head>
+  <body>
+    <div class="container">
+      <h2 class="mb-4">Formulaire de contact</h2>
 
-<body>
-    <nav>
-        <a href="..">🏠 Index</a> / TP4
-    </nav>
-    <h1>TP4</h1>
-    <!-- Add your site or application content here -->
-    <p>Hello world! This is HTML5 Boilerplate.</p>
-    <img src="../galilee.png" alt="Logo Galilee" />
-</body>
+      <form id="contactForm" class="needs-validation" novalidate>
+        <!-- Nom -->
+        <div class="mb-3">
+          <label for="name" class="form-label">Nom</label>
+          <input type="text" class="form-control" id="name" required minlength="5" onkeyup="calcNbChar(this.id)" />
+          <span></span>
+          <div class="invalid-feedback">Minimum 5 caractères</div>
+        </div>
 
+        <!-- Prénom -->
+        <div class="mb-3">
+          <label for="firstname" class="form-label">Prénom</label>
+          <input type="text" class="form-control" id="firstname" required minlength="5" onkeyup="calcNbChar(this.id)" />
+          <span></span>
+          <div class="invalid-feedback">Minimum 5 caractères</div>
+        </div>
+
+        <!-- Date -->
+        <div class="mb-3">
+          <label for="birthdate" class="form-label">Date de naissance</label>
+          <input type="date" class="form-control" id="birthdate" required />
+          <div class="invalid-feedback">La date ne peut pas être dans le futur</div>
+        </div>
+
+        <!-- Adresse -->
+        <div class="mb-3">
+  <label for="adress" class="form-label">Adresse postale</label>
+  <div class="input-group">
+    <input type="text" class="form-control" id="adress" required minlength="5" onkeyup="calcNbChar(this.id)" />
+    <button type="button" class="btn btn-secondary" id="gpsBtn">📍 GPS</button>
+  </div>
+  <span></span>
+  <!-- DIV donde irá el mapa -->
+  <div id="map"></div>
+</div>
+
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="mail" class="form-label">Adresse mail</label>
+          <input type="email" class="form-control" id="mail" required onkeyup="calcNbChar(this.id)" />
+          <span></span>
+          <div class="invalid-feedback">Adresse mail invalide</div>
+        </div>
+
+        <!-- Boutons -->
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="button" class="btn btn-danger" id="resetBtn">Supprimer tout</button>
+      </form>
+
+      <hr />
+
+      <h3>Liste des contacts enregistrés</h3>
+      <table class="table table-striped mt-3">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date</th>
+            <th>Adresse</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/gps.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/form-validation.js"></script>
+  </body>
 </html>
