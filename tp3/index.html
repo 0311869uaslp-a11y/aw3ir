@@ -25,65 +25,76 @@
 
   <body class="bg-light">
     <div class="container mt-5">
-      <h2 class="text-center mb-4">Formulaire d'inscription</h2>
+        <h1 class="text-center mb-3">TP AW</h1>
+        <h3 class="text-center mb-4">Avec Bootstrap</h3>
 
-      <form id="userForm" class="row g-3 needs-validation" novalidate>
-        <div class="col-md-6">
-          <label for="lastname" class="form-label">Nom</label>
-          <input
-            type="text"
-            class="form-control"
-            id="lastname"
-            placeholder="Dupont"
-            required
-          />
-        </div>
+        <form id="userForm" class="needs-validation" novalidate>
+            <div class="mb-3 row">
+                <label for="lastname" class="col-sm-3 col-form-label">Nom</label>
+                <div class="col-sm-9">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="lastname"
+                        placeholder="Dupont"
+                        required
+                    />
+                </div>
+            </div>
 
-        <div class="col-md-6">
-          <label for="firstname" class="form-label">Prénom</label>
-          <input
-            type="text"
-            class="form-control"
-            id="firstname"
-            placeholder="Jean"
-            required
-          />
-        </div>
+            <div class="mb-3 row">
+                <label for="firstname" class="col-sm-3 col-form-label">Prénom</label>
+                <div class="col-sm-9">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="firstname"
+                        placeholder="Jean"
+                        required
+                    />
+                </div>
+            </div>
 
-        <div class="col-md-6">
-          <label for="birthday" class="form-label">Date de naissance</label>
-          <input type="date" class="form-control" id="birthday" required />
-        </div>
+            <div class="mb-3 row">
+                <label for="birthday" class="col-sm-3 col-form-label">Date de naissance</label>
+                <div class="col-sm-9">
+                    <input type="date" class="form-control" id="birthday" required />
+                </div>
+            </div>
 
-        <div class="col-md-6">
-          <label for="address" class="form-label">Adresse postale</label>
-          <input
-            type="text"
-            class="form-control"
-            id="address"
-            placeholder="10 rue de Paris"
-            required
-          />
-        </div>
+            <div class="mb-3 row">
+                <label for="address" class="col-sm-3 col-form-label">Adresse postale</label>
+                <div class="col-sm-9">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="address"
+                        placeholder="10 rue de Paris"
+                        required
+                    />
+                </div>
+            </div>
 
-        <div class="col-md-12">
-          <label for="email" class="form-label">Adresse mail</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="exemple@mail.com"
-            required
-          />
-        </div>
+            <div class="mb-3 row">
+                <label for="email" class="col-sm-3 col-form-label">Adresse mail</label>
+                <div class="col-sm-9">
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        placeholder="exemple@mail.com"
+                        required
+                    />
+                </div>
+            </div>
 
-        <div class="col-12 text-center mt-4">
-          <button type="submit" id="submit" class="btn btn-primary px-4">
-            Envoyer
-          </button>
-        </div>
-      </form>
+            <div class="text-center mt-4">
+                <button type="submit" id="submit" class="btn btn-primary w-50">Envoyer</button>
+            </div>
+        </form>
     </div>
+
+
 
     <!-- MODAL -->
     <div
