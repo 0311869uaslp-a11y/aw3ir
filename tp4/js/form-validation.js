@@ -3,9 +3,19 @@
 // 1️⃣ Contador de caracteres
 function calcNbChar(id) {
   const input = document.querySelector(`#${id}`);
-  const span = document.querySelector(`#${id} + span`);
-  span.textContent = input.value.length;
+  if (!input) return;
+
+  // Buscamos dentro del mismo contenedor padre (por ejemplo, el .d-flex)
+  const parent = input.closest('.d-flex') || input.parentElement;
+
+  // Buscamos el primer <span> dentro del mismo contenedor
+  const span = parent.querySelector('span');
+
+  if (span) {
+    span.textContent = input.value.length;
+  }
 }
+
 
 // 2️⃣ Validación + envoi
 document.getElementById("contactForm").addEventListener("submit", function (e) {
