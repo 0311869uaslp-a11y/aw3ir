@@ -5,6 +5,7 @@ body {
 }
 
 form {
+  
     border-radius: 16px;
     padding: 16px;
     background-color: white;
@@ -45,6 +46,7 @@ input:invalid {
 }
 
 .btn-primary {
+  width:250px;
   border-radius: 5px;        /* bordes redondeados */
   padding: 6px 12px;         /* padding vertical y horizontal */
   background-color: #0d6efd; /* color de fondo azul */
@@ -64,16 +66,6 @@ input:invalid {
 
 
 
-button {
-    margin-top: 20px;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007BFF;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
 
 button:hover {
     background-color: #0056b3;
