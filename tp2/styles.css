@@ -27,38 +27,37 @@ input {
   border-radius: 5px;
   border: 1px solid gray;
   font-size: 1rem;
-  box-sizing: border-box; /* pour s'assurer que les margin/padding n'impacte pas la largeur width */
+  box-sizing: border-box; 
 
-    font-size: 1em;          /* taille de caractère de 1em */
-    border-radius: 5px;      /* bordure arrondi */
+    font-size: 1em;         
+    border-radius: 5px;     
     
     transition: border-color 0.3s;
 }
 
-/* Campo válido */
+
 input:valid {
     border-color: green;
 }
 
-/* Campo no válido */
 input:invalid {
     border-color: red;
 }
 
 .btn-primary {
   width:250px;
-  border-radius: 5px;        /* bordes redondeados */
-  padding: 6px 12px;         /* padding vertical y horizontal */
-  background-color: #0d6efd; /* color de fondo azul */
-  border: 2px solid #0d6efd; /* borde azul */
-  color: #fff;               /* texto blanco */
-  cursor: pointer;           /* cursor tipo puntero */
-  text-decoration: none;     /* sin subrayado */
-  font-size: 1em;            /* tamaño de letra coherente */
+  border-radius: 5px;        
+  padding: 6px 12px;         
+  background-color: #0d6efd; 
+  border: 2px solid #0d6efd; 
+  color: #fff;               
+  cursor: pointer;           
+  text-decoration: none;    
+  font-size: 1em;          
   transition: background-color 0.3s, border-color 0.3s;
 }
 
-/* Efecto hover */
+
 .btn-primary:hover {
   background-color: #0b5ed7;
   border-color: #0b5ed7;
