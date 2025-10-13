@@ -34,7 +34,7 @@ window.onload = function () {
       errors.push("La date de naissance ne peut pas être dans le futur.");
     }
 
-    // Si hay errores → mostrar lista
+    
     if (errors.length > 0) {
       modalTitle.textContent = "Erreur de validation";
       modalBody.innerHTML =
@@ -45,8 +45,8 @@ window.onload = function () {
       return;
     }
 
-    // Si todo está correcto → mostrar bienvenida + mapa
-    modalTitle.textContent = "Formulaire validé 🎉";
+    
+    modalTitle.textContent = "Formulaire validé!";
     modalBody.innerHTML = `
       <p class="text-success mb-2">
         Bienvenue <strong>${firstname} ${lastname}</strong> !<br>
@@ -57,16 +57,16 @@ window.onload = function () {
 
     modal.show();
 
-    // Esperar a que el modal se muestre y crear el mapa
+    
     setTimeout(() => {
-      // Crear mapa con Leaflet (OpenStreetMap)
+     
       const map = L.map("map").setView([48.8566, 2.3522], 13); // París por defecto
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         attribution: "© OpenStreetMap contributors",
       }).addTo(map);
 
-      // Intentar geolocalizar la dirección
+      
       fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
           address

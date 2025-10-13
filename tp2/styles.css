@@ -2,6 +2,7 @@ body {
     background-color: rgb(220, 219, 219);
     font-family: Arial, sans-serif;
     margin: 40px;
+  
 }
 
 form {
@@ -78,7 +79,7 @@ input:valid + .icon-ok {
   color:green;
 }
 
-.flecha{
+.arrow{
   border:solid;
   border-color:black;
   background-color: #0d72dd;
