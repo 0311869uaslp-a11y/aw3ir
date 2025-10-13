@@ -78,6 +78,12 @@ input:valid + .icon-ok {
   color:green;
 }
 
+.flecha{
+  border:solid;
+  border-color:black;
+  background-color: #0d72dd;
+}
+
 form:invalid .btn-primary[type="submit"] {
   border:solid;
   border-color: gray;
