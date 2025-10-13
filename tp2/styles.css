@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(203, 198, 198);
+    background-color: rgb(220, 219, 219);
     font-family: Arial, sans-serif;
     margin: 40px;
 }
@@ -76,8 +76,11 @@ input:invalid + .icon-ok {
 }
 input:valid + .icon-ok {
   display: inline-block;
+  color:green;
 }
 
-form:invalid input[type="submit"] {
+form:invalid .btn-primary[type="submit"] {
+  border:solid;
+  border-color: gray;
   background-color: gray;
 }
