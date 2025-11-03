@@ -25,6 +25,11 @@ window.onload = function () {
       errors.push("L'adresse doit avoir au moins 5 caractères.");
     if (!validateEmail(email))
       errors.push("L'adresse mail n'est pas valide.");
+    if (!validateEmail(email))
+      errors.push("L'adresse mail n'est pas valide.");
+    if (birthdayDate.getTime()==null)
+      errors.push("L'birthday n'est pas valide.");
+
 
     const birthdayDate = new Date(birthday);
     const birthdayTimestamp = birthdayDate.getTime();
