@@ -21,27 +21,27 @@ window.onload = function () {
       errors.push("Le nom doit avoir au moins 5 caractères.");
     if (firstname.length < 5)
       errors.push("Le prénom doit avoir au moins 5 caractères.");
-    if (address.length < 5)
+    if (address.length < 5) {
       errors.push("L'adresse doit avoir au moins 5 caractères.");
+    }
     if (!validateEmail(email))
       errors.push("L'adresse mail n'est pas valide.");
-    if (!validateEmail(email))
-      errors.push("L'adresse mail n'est pas valide.");
-    if (birthdayDate.getTime()==null)
-      errors.push("L'birthday n'est pas valide.");
 
+   
+    if (!birthday) {
+      errors.push("La date de naissance est obligatoire.");
+    } else {
+      const birthdayDate = new Date(birthday);
+      const birthdayTimestamp = birthdayDate.getTime();
+      const nowTimestamp = Date.now();
 
-    const birthdayDate = new Date(birthday);
-    const birthdayTimestamp = birthdayDate.getTime();
-    const nowTimestamp = Date.now();
-
-    if (birthdayTimestamp > nowTimestamp) {
-      errors.push("La date de naissance ne peut pas être dans le futur.");
+      if (birthdayTimestamp > nowTimestamp) {
+        errors.push("La date de naissance ne peut pas être dans le futur.");
+      }
     }
 
-    
     if (errors.length > 0) {
-      modalTitle.textContent = "Erreur de validation";
+      modalTitle.textContent = "Erreur dans le formulaire";
       modalBody.innerHTML =
         "<ul class='text-start text-danger'>" +
         errors.map((e) => `<li>${e}</li>`).join("") +
@@ -50,28 +50,27 @@ window.onload = function () {
       return;
     }
 
-    
-    modalTitle.textContent = "Formulaire validé!";
+    modalTitle.innerHTML =` <p>
+        <strong> Bienvenue ${firstname} ${lastname}</strong> !<br>`;
+
+
     modalBody.innerHTML = `
-      <p class="text-success mb-2">
-        Bienvenue <strong>${firstname} ${lastname}</strong> !<br>
+      <p >
         Vous êtes né(e) le <strong>${birthday}</strong> et vous habitez à <strong>${address}</strong>.
       </p>
       <div id="map" style="height:300px; border-radius:10px;"></div>
+      <p><a href="http://maps.google.com/maps?q=${address}" target="_blank">${address}</a></p>
     `;
 
     modal.show();
 
-    
     setTimeout(() => {
-     
       const map = L.map("map").setView([48.8566, 2.3522], 13); // París por defecto
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         attribution: "© OpenStreetMap contributors",
       }).addTo(map);
 
-      
       fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
           address
