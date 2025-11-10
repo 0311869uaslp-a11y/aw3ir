@@ -1,53 +1,65 @@
-let map;
 
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   } else {
     document.querySelector("#map").innerHTML =
-      "La géolocalisation n'est pas supportée par ce navigateur.";
+      "Geolocation is not supported by this browser.";
   }
 }
+
 
 function showPosition(position) {
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
 
-  // Si ya existe un mapa, lo eliminamos
-  if (map) {
-    map.remove();
-  }
+  
+  document.getElementById("adress").value =
+    position.coords.latitude.toFixed(6) + ", " + position.coords.longitude.toFixed(6);
+  calcNbChar("adress");  
 
-  // Crear mapa interactivo
-  map = L.map("map").setView([lat, lon], 14);
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap contributors',
-  }).addTo(map);
+  
+  const zoom = 5;
+  const delta = 0.05 / Math.pow(2, zoom - 10);
 
-  // Añadir marcador
-  L.marker([lat, lon])
-    .addTo(map)
-    .bindPopup("Vous êtes ici 📍")
-    .openPopup();
+  const bboxEdges = {
+    south: position.coords.latitude - delta,
+    north: position.coords.latitude + delta,
+    west: position.coords.longitude - delta,
+    east: position.coords.longitude + delta,
+  };
+
+  const bbox = `${bboxEdges.west}%2C${bboxEdges.south}%2C${bboxEdges.east}%2C${bboxEdges.north}`;
+  const iframeSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${position.coords.latitude}%2C${position.coords.longitude}`;
+
+ 
+  document.getElementById("map").innerHTML = `
+        <iframe
+          width="100%"
+          height="200"
+          frameborder="0"
+          scrolling="no"
+          src="${iframeSrc}" >
+        </iframe>
+      `;
 }
+
 
 function showError(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
       document.querySelector("#map").innerHTML =
-        "L'utilisateur a refusé la demande de géolocalisation.";
+        "User denied the request for Geolocation.";
       break;
     case error.POSITION_UNAVAILABLE:
       document.querySelector("#map").innerHTML =
-        "Les informations de localisation ne sont pas disponibles.";
+        "Location information is unavailable.";
       break;
     case error.TIMEOUT:
       document.querySelector("#map").innerHTML =
-        "La demande de localisation a expiré.";
+        "The request to get user location timed out.";
       break;
-    default:
-      document.querySelector("#map").innerHTML = "Erreur inconnue.";
+    case error.UNKNOWN_ERROR:
+      document.querySelector("#map").innerHTML = "An unknown error occurred.";
+      break;
   }
 }

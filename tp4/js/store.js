@@ -1,4 +1,4 @@
-// store.js
+
 var contactStore = (function () {
   let contactListString = localStorage.getItem("contactList");
   var contactList = contactListString ? JSON.parse(contactListString) : [];
@@ -29,7 +29,7 @@ var contactStore = (function () {
   };
 })();
 
-// Afficher la liste
+
 function displayContactList() {
   const tbody = document.querySelector("table tbody");
   tbody.innerHTML = "";
@@ -37,13 +37,36 @@ function displayContactList() {
   const contactList = contactListString ? JSON.parse(contactListString) : [];
 
   for (const contact of contactList) {
+
+    // Convertir dirección a enlace de Google Maps
+let mapLink = contact.adress;
+if (mapLink.includes(",")) {
+  const coords = contact.adress.split(",").map(c => c.trim());
+  mapLink = `<a href="https://www.google.com/maps?q=${coords[0]},${coords[1]}" target="_blank">
+               ${contact.adress}
+             </a>`;
+}
+
+
+let mailLink = `<a href="mailto:${contact.mail}">${contact.mail}</a>`;
+
+
     tbody.innerHTML += `
       <tr>
         <td>${contact.name}</td>
         <td>${contact.firstname}</td>
         <td>${contact.date}</td>
-        <td>${contact.adress}</td>
-        <td>${contact.mail}</td>
+        <td>${mapLink}</td>
+    <td>${mailLink}</td>
       </tr>`;
   }
+
+  
+  updateContactCount();
 }
+
+function updateContactCount() {
+    const rows = document.querySelector("table tbody").children.length;
+    document.getElementById("contactTitle").textContent = `Liste des contacts (${rows})`;
+}
+

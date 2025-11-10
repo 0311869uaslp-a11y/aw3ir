@@ -6,8 +6,6 @@
     <title>TP4 - Formulaire avec géolocalisation et JSON</title>
     <link rel="stylesheet" href="css/bootstrap.css" />
 
-    <!-- Librería Leaflet (mapas libres e interactivos) -->
-<!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
@@ -32,10 +30,10 @@
  <body class="bg-light">
   <div class="container mt-5">
     <h1 class="text-center mb-3">Formulaire de contact</h1>
-    <h3 class="text-center mb-4">Ajouter un contact</h3>
+    <h3 class="mb-4">Ajouter un contact</h3>
 
     <form id="contactForm" class="needs-validation" novalidate>
-  <!-- Nom -->
+  
   <div class="mb-3 row">
     <label for="name" class="col-sm-3 col-form-label">Nom</label>
     <div class="col-sm-9 d-flex align-items-center">
@@ -52,7 +50,7 @@
     <div class="invalid-feedback offset-sm-3">Minimum 5 caractères</div>
   </div>
 
-  <!-- Prénom -->
+  
   <div class="mb-3 row">
     <label for="firstname" class="col-sm-3 col-form-label">Prénom</label>
     <div class="col-sm-9 d-flex align-items-center">
@@ -69,7 +67,7 @@
     <div class="invalid-feedback offset-sm-3">Minimum 5 caractères</div>
   </div>
 
-  <!-- Date -->
+  
   <div class="mb-3 row">
     <label for="birthdate" class="col-sm-3 col-form-label">Date de naissance</label>
     <div class="col-sm-9 d-flex align-items-center">
@@ -80,15 +78,16 @@
         required
         onkeyup="calcNbChar(this.id)"
         onchange="calcNbChar(this.id)"
+        required
       />
       <span class="ms-2 text-muted"></span>
     </div>
     <div class="invalid-feedback offset-sm-3">La date ne peut pas être dans le futur</div>
   </div>
 
-  <!-- Adresse -->
+ 
   <div class="mb-3 row">
-    <label for="adress" class="col-sm-3 col-form-label">Adresse postale</label>
+    <label for="adress" class="col-sm-3 col-form-label">Adresse</label>
     <div class="col-sm-9 d-flex align-items-center">
       <div class="input-group flex-grow-1">
         <input
@@ -105,15 +104,15 @@
       </div>
     
     </div>
-    <!-- DIV donde irá el mapa -->
+    
     <div class="col-sm-9 offset-sm-3">
       <div id="map" class="mt-3 border rounded" style="height: 250px;"></div>
     </div>
   </div>
 
-  <!-- Email -->
+  
   <div class="mb-3 row">
-    <label for="mail" class="col-sm-3 col-form-label">Adresse mail</label>
+    <label for="mail" class="col-sm-3 col-form-label">Mail</label>
     <div class="col-sm-9 d-flex align-items-center">
       <input
         type="email"
@@ -127,21 +126,28 @@
     <div class="invalid-feedback offset-sm-3">Adresse mail invalide</div>
   </div>
 
-  <!-- Boutons -->
+  
   <div class=" mt-4">
-    <button type="submit" class="btn btn-primary w-25 me-2">Ajouter</button>
+   <button type="submit" class="btn btn-primary btn-sm me-2">Ajouter</button>
+
+<br>
 
   </div>
+
+  <div id="successMessage" class="alert alert-success d-none">
+  Contact ajouté avec succès.
+</div>
 </form>
 
 
     <hr class="my-5" />
 
-    <!-- Table -->
+    
      <div class="input-group flex-grow-1 gap-2">
-    <h3 class="text-center mb-4">Liste des contacts enregistrés</h3>  
+   <h3 class="text-center mb-4" id="contactTitle">Liste des contacts (0)</h3>
+
    
-     <button type="button" class="btn btn-primary" id="resetBtn">Reset</button>
+     <button type="button" class="btn btn-primary btn-sm me-2" id="resetBtn">Reset</button>
     </div>
     <div class="table-responsive">
       <table class="table table-striped table-bordered align-middle shadow-sm">
