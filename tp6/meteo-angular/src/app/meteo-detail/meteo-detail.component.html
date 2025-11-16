@@ -1,0 +1,131 @@
+<!-- meteo de la ville selectionnée -->
+<div *ngIf="meteo && meteo.cod == 200">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/">🏠</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        Météo pour {{ meteo.name }}
+      </li>
+    </ol>
+  </nav>
+
+  <div class="card" style="width: 100%; max-width: 600px; margin: 0 auto">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">{{ meteo.name }}, {{ meteo.sys.country }}</h5>
+      <small>{{ meteo.dt * 1000 | date: "EEEE d LLLL HH:mm" }}</small>
+    </div>
+    
+    <!-- Mapa con iframe -->
+    <!-- Mapa corregido con DomSanitizer -->
+<div class="card-img-top position-relative">
+  <iframe
+    [src]="mapUrl"
+    width="100%"
+    height="300"
+    style="border: none;"
+    frameborder="0"
+    scrolling="no"
+    [title]="'Carte de ' + meteo?.name"
+  >
+  </iframe>
+  <div class="position-absolute bottom-0 end-0 m-2">
+    <a 
+      [href]="'https://www.openstreetmap.org/?mlat=' + meteo?.coord?.lat + '&mlon=' + meteo?.coord?.lon"
+      target="_blank"
+      class="btn btn-sm btn-outline-dark bg-light"
+    >
+      📍 Voir carte complète
+    </a>
+  </div>
+</div>
+
+    <div class="card-body text-center">
+      <h3 class="card-title">
+        <i [class]="'wi wi-owm-' + meteo.weather[0].id"></i>
+        {{ meteo.main.temp | number:'1.0-0' }}°C
+      </h3>
+      <p class="card-text h5 text-capitalize">{{ meteo.weather[0].description }}</p>
+      <p class="text-muted">Ressenti: {{ meteo.main.feels_like | number:'1.0-0' }}°C</p>
+    </div>
+    
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <i class="wi wi-thermometer"></i> 
+        <strong>Température:</strong> 
+        Min: {{ meteo.main.temp_min | number:'1.0-0' }}°C - 
+        Max: {{ meteo.main.temp_max | number:'1.0-0' }}°C
+      </li>
+      <li class="list-group-item">
+        <i class="wi wi-humidity"></i> 
+        <strong>Humidité:</strong> {{ meteo.main.humidity }}%
+      </li>
+      <li class="list-group-item">
+        <i class="wi wi-barometer"></i> 
+        <strong>Pression:</strong> {{ meteo.main.pressure }} hPa
+      </li>
+      <li class="list-group-item">
+        <i class="wi wi-cloud"></i> 
+        <strong>Nuages:</strong> {{ meteo.clouds.all }}%
+      </li>
+      <li class="list-group-item">
+        <i class="wi wi-strong-wind"></i> 
+        <strong>Vent:</strong> {{ meteo.wind.speed | number:'1.1-1' }} km/h
+        <span *ngIf="meteo.wind.deg">
+          ({{ getWindDirection(meteo.wind.deg) }})
+        </span>
+      </li>
+      <li class="list-group-item">
+        <i class="wi wi-sunrise"></i> 
+        <strong>Lever du soleil:</strong> {{ meteo.sys.sunrise * 1000 | date: 'HH:mm' }}
+      </li>
+      <li class="list-group-item">
+        <i class="wi wi-sunset"></i> 
+        <strong>Coucher du soleil:</strong> {{ meteo.sys.sunset * 1000 | date: 'HH:mm' }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Pronóstico de 5 días -->
+<div *ngIf="meteo5Days && meteo5Days.dailyList && meteo5Days.dailyList.length > 0" class="mt-5">
+  <h4 class="text-center mb-4">📅 Prévisions sur 5 jours</h4>
+  
+  <div class="row">
+    <div *ngFor="let day of meteo5Days.dailyList" class="col-md-2 col-6 mb-3">
+      <div class="card text-center h-100">
+        <div class="card-header bg-info text-white">
+          <strong>{{ getDayName(day.dt * 1000) }}</strong> <!-- CORREGIDO -->
+          <br>
+          <small>{{ day.dt * 1000 | date: 'dd/MM' }}</small>
+        </div>
+        <div class="card-body">
+          <i [class]="'wi wi-owm-' + day.weather[0].id" class="display-6"></i>
+          <h5 class="card-title mt-2">{{ day.main.temp | number:'1.0-0' }}°C</h5>
+          <p class="card-text small text-capitalize">{{ day.weather[0].description }}</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            <i class="wi wi-humidity"></i> {{ day.main.humidity }}%
+            <br>
+            <i class="wi wi-strong-wind"></i> {{ day.wind.speed | number:'1.1-1' }} km/h
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading del pronóstico -->
+<div *ngIf="loadingForecast" class="text-center mt-4">
+  <div class="spinner-border spinner-border-sm text-info" role="status">
+    <span class="visually-hidden">Chargement...</span>
+  </div>
+  <p class="mt-2">Chargement des prévisions...</p>
+</div>
+
+<!-- Error del pronóstico -->
+<div *ngIf="!loadingForecast && (!meteo5Days || !meteo5Days.dailyList)" class="alert alert-warning mt-4 text-center">
+  <p>Les prévisions sur 5 jours ne sont pas disponibles pour le moment.</p>
+</div>
