@@ -130,7 +130,7 @@
                         <div class="card-body text-center">
                             <h3 class="card-title">
                                 <i v-bind:class="'wi wi-owm-' + cityWeather.weather[0].id"></i>
-                                {{ Math.round(cityWeather.main.temp) }}°C
+                                {{ cityWeather.main.temp }}°C
                             </h3>
                             <p class="card-text h5 text-capitalize">{{ cityWeather.weather[0].description }}</p>
                             <p class="text-muted">Ressenti: {{ Math.round(cityWeather.main.feels_like) }}°C</p>
@@ -157,7 +157,7 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="wi wi-strong-wind"></i> 
-                                <strong>Vent:</strong> {{ Math.round(cityWeather.wind.speed * 3.6) }} km/h
+                                <strong>Vent:</strong> {{ cityWeather.wind.speed }} km/h
                                 <span v-if="cityWeather.wind.deg">
                                     ({{ getWindDirection(cityWeather.wind.deg) }})
                                 </span>
