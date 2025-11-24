@@ -10,8 +10,8 @@ export class MeteoService {
   getMeteo(name: string): Promise<any> {
     console.log('from service', name);
 
-    // ⚠️ REEMPLAZA 'TU_API_KEY' CON TU CLAVE REAL DE OPENWEATHERMAP
-    const apiKey = 'feac79144fa3d24dfbe3e8cf0dac9b51'; // Cambia esto por tu API key real
+   
+    const apiKey = 'feac79144fa3d24dfbe3e8cf0dac9b51'; 
     
     return fetch(
       `https://api.openweathermap.org/data/2.5/weather/?q=${name}&units=metric&lang=fr&appid=${apiKey}`
@@ -37,7 +37,7 @@ export class MeteoService {
   getMeteo5Days(name: string): Promise<any> {
   console.log('from service - 5 days forecast', name);
 
-  // ⚠️ REEMPLAZA 'TU_API_KEY' CON TU CLAVE REAL
+  
   const apiKey = 'feac79144fa3d24dfbe3e8cf0dac9b51';
   
   return fetch(

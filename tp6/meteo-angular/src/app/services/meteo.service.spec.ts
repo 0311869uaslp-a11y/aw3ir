@@ -10,7 +10,7 @@ export class MeteoService {
   getMeteo(name: string): Promise<any> {
     console.log('from service', name);
 
-    // ⚠️ REEMPLAZA 'TU_API_KEY' CON TU CLAVE REAL DE OPENWEATHERMAP
+   
     return fetch(
       'https://api.openweathermap.org/data/2.5/weather/?q=' +
         name +

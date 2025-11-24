@@ -17,8 +17,7 @@
       <small>{{ meteo.dt * 1000 | date: "EEEE d LLLL HH:mm" }}</small>
     </div>
     
-    <!-- Mapa con iframe -->
-    <!-- Mapa corregido con DomSanitizer -->
+    
 <div class="card-img-top position-relative">
   <iframe
     [src]="mapUrl"
@@ -88,36 +87,103 @@
   </div>
 </div>
 
-<!-- Pronóstico de 5 días -->
+
 <div *ngIf="meteo5Days && meteo5Days.dailyList && meteo5Days.dailyList.length > 0" class="mt-5">
   <h4 class="text-center mb-4">📅 Prévisions sur 5 jours</h4>
   
   <div class="row">
-    <div *ngFor="let day of meteo5Days.dailyList" class="col-md-2 col-6 mb-3">
-      <div class="card text-center h-100">
-        <div class="card-header bg-info text-white">
-          <strong>{{ getDayName(day.dt * 1000) }}</strong> <!-- CORREGIDO -->
+    <div *ngFor="let day of meteo5Days.dailyList" class="col-lg-2 col-md-4 col-6 mb-3">
+      <div class="card text-center h-100 weather-card">
+        <div class="card-header bg-info text-white py-2">
+          <strong class="small">{{ getDayName(day.dt * 1000) }}</strong>
           <br>
           <small>{{ day.dt * 1000 | date: 'dd/MM' }}</small>
         </div>
-        <div class="card-body">
-          <i [class]="'wi wi-owm-' + day.weather[0].id" class="display-6"></i>
-          <h5 class="card-title mt-2">{{ day.main.temp | number:'1.0-0' }}°C</h5>
-          <p class="card-text small text-capitalize">{{ day.weather[0].description }}</p>
+        
+        <div class="card-body p-2">
+          
+          <i [class]="'wi wi-owm-' + day.weather[0].id" class="display-6 text-primary"></i>
+          <h5 class="card-title mt-1 mb-1">{{ day.main.temp }}°C</h5>
+          <p class="card-text small text-capitalize mb-1">{{ day.weather[0].description }}</p>
+          
+         
+          <div class="temp-range small">
+            <span class="text-primary">Max: {{ day.main.temp_max }}°</span>
+            <span class="text-muted mx-1">•</span>
+            <span class="text-info">Min: {{ day.main.temp_min }}°</span>
+          </div>
         </div>
-        <div class="card-footer">
-          <small class="text-muted">
-            <i class="wi wi-humidity"></i> {{ day.main.humidity }}%
-            <br>
-            <i class="wi wi-strong-wind"></i> {{ day.wind.speed | number:'1.1-1' }} km/h
-          </small>
+        
+        <div class="card-footer p-2 bg-light">
+         
+          <div class="weather-details">
+           
+            <div class="weather-detail-item mb-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="small fw-bold">
+                  <i class="wi wi-humidity me-1"></i>Humidité:
+                </span>
+                <span class="small text-muted">{{ day.main.humidity }}%</span>
+              </div>
+            </div>
+            
+            
+            <div class="weather-detail-item mb-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="small fw-bold">
+                  <i class="wi wi-strong-wind me-1"></i>Vent:
+                </span>
+                <span class="small text-muted">{{ day.wind.speed }} km/h</span>
+              </div>
+            </div>
+            
+            
+            <div class="weather-detail-item mb-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="small fw-bold">
+                  <i class="wi wi-barometer me-1"></i>Pression:
+                </span>
+                <span class="small text-muted">{{ day.main.pressure }} hPa</span>
+              </div>
+            </div>
+            
+            
+            <div class="weather-detail-item mb-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="small fw-bold">
+                  <i class="wi wi-cloud me-1"></i>Nuages:
+                </span>
+                <span class="small text-muted">{{ day.clouds?.all || 0 }}%</span>
+              </div>
+            </div>
+            
+            
+            <div class="weather-detail-item mb-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="small fw-bold">
+                  <i class="wi wi-sunrise me-1"></i>Lever:
+                </span>
+                <span class="small text-muted">{{ day.sys?.sunrise * 1000 | date: 'HH:mm' }}</span>
+              </div>
+            </div>
+            
+            
+            <div class="weather-detail-item mb-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="small fw-bold">
+                  <i class="wi wi-sunset me-1"></i>Coucher:
+                </span>
+                <span class="small text-muted">{{ day.sys?.sunset * 1000 | date: 'HH:mm' }}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Loading del pronóstico -->
+
 <div *ngIf="loadingForecast" class="text-center mt-4">
   <div class="spinner-border spinner-border-sm text-info" role="status">
     <span class="visually-hidden">Chargement...</span>
@@ -125,7 +191,7 @@
   <p class="mt-2">Chargement des prévisions...</p>
 </div>
 
-<!-- Error del pronóstico -->
+
 <div *ngIf="!loadingForecast && (!meteo5Days || !meteo5Days.dailyList)" class="alert alert-warning mt-4 text-center">
   <p>Les prévisions sur 5 jours ne sont pas disponibles pour le moment.</p>
 </div>
